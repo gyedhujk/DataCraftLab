@@ -1,9 +1,16 @@
-function isSymmetric(root) {
-  if (!root) return true;
-  return isMirror(root.left, root.right);
-  function isMirror(left, right) {
-    if (!left && !right) return true;
-    if (!left || !right || left.val !== right.val) return false;
-    return isMirror(left.left, right.right) && isMirror(left.right, right.left);
+const quickSort = (arr) => {
+  if (arr.length <= 1) {
+    return arr;
   }
-}
+  const pivot = arr[arr.length - 1];
+  const left = [];
+  const right = [];
+  for (let i = 0; i < arr.length - 1; i++) {
+    if (arr[i] < pivot) {
+      left.push(arr[i]);
+    } else {
+      right.push(arr[i]);
+    }
+  }
+  return quickSort(left).concat(pivot, quickSort(right));
+};
